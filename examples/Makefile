@@ -1,9 +1,9 @@
 # compilers
-CC=cc
-CXX=CC
-F90=ftn
-CLD=CC
-FLD=ftn
+CC=mpicc
+CXX=mpi++
+F90=mpif90
+CLD=mpic++
+FLD=mpif90
 
 # OpenMP specific flags
 OMPFLAGS=-fopenmp
