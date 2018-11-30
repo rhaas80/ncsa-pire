@@ -1,0 +1,63 @@
+# compilers
+CC=cc
+CXX=CC
+F90=ftn
+CLD=CC
+FLD=ftn
+
+# OpenMP specific flags
+OMPFLAGS=-fopenmp
+
+#optimization flags
+OPTFLAGS=-O3 -g3
+
+# build up compiler flags
+CFLAGS=$(OMPFLAGS) $(OPTFLAGS) -Wall -std=c99
+CXXFLAGS=$(OMPFLAGS) $(OPTFLAGS) -Wall
+F90FLAGS=$(OMPFLAGS) $(OPTFLAGS) -Wall
+
+LDFLAGS=$(OMPFLAGS) -Wall
+LIBS=-lm
+
+all: sobel stream primes mpihello pi worker
+
+clean:
+	rm -f sobel stream primes mpihello pi worker
+	rm -f *.o
+
+sobel: sobel.o pgm.o
+	$(CLD) -o $@ $(LDFLAGS) sobel.o pgm.o $(LIBS)
+
+stream: stream.o
+	$(CLD) -o $@ $(LDFLAGS) stream.o $(LIBS)
+
+primes: primes.o
+	$(CLD) -o $@ $(LDFLAGS) primes.o $(LIBS)
+
+mpihello: mpihello.o
+	$(FLD) -o $@ $(LDFLAGS) mpihello.o $(LIBS)
+
+pi: pi.o
+	$(FLD) -o $@ $(LDFLAGS) pi.o $(LIBS)
+
+worker: worker.o
+	$(FLD) -o $@ $(LDFLAGS) worker.o $(LIBS)
+
+# extra dependencies
+pgm.o sobel.o: pgm.h
+
+# pattern rules
+
+%.o: %.c
+	$(CC) -c -o $@ $(CFLAGS) $<
+
+%.o: %.cxx
+	$(CXX) -c -o $@ $(CXXFLAGS) $<
+
+%.o: %.cpp
+	$(CXX) -c -o $@ $(CXXFLAGS) $<
+
+%.o: %.f90
+	$(F90) -c -o $@ $(F90FLAGS) $<
+
+
