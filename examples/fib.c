@@ -15,7 +15,7 @@ int fib(int n) {
 }
 
 int main(void) {
- int n = 35;
+ int n = 30;
  double start = omp_get_wtime();
  #pragma omp parallel
  {
