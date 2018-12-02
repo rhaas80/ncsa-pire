@@ -41,7 +41,7 @@ fib: fib.o
 	$(CLD) -o $@ $(LDFLAGS) fib.o $(LIBS)
 
 mpihello: mpihello.o
-	$(FLD) -o $@ $(LDFLAGS) mpihello.o $(LIBS)
+	$(CLD) -o $@ $(LDFLAGS) mpihello.o $(LIBS)
 
 pi: pi.o
 	$(FLD) -o $@ $(LDFLAGS) pi.o $(LIBS)
