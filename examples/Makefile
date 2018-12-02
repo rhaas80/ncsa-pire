@@ -34,7 +34,7 @@ stream: stream.o
 primes: primes.o
 	$(CLD) -o $@ $(LDFLAGS) primes.o $(LIBS)
 
-primes: wordcount.o
+wordcount: wordcount.o
 	$(CLD) -o $@ $(LDFLAGS) wordcount.o $(LIBS)
 
 mpihello: mpihello.o
