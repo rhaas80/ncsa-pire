@@ -19,7 +19,7 @@ F90FLAGS=$(OMPFLAGS) $(OPTFLAGS) -Wall
 LDFLAGS=$(OMPFLAGS) -Wall
 LIBS=-lm
 
-all: sobel stream primes wordcount mpihello pi worker
+all: sobel stream primes fib wordcount mpihello pi worker
 
 clean:
 	rm -f sobel stream primes wordcount mpihello pi worker
@@ -36,6 +36,9 @@ primes: primes.o
 
 wordcount: wordcount.o
 	$(CLD) -o $@ $(LDFLAGS) wordcount.o $(LIBS)
+
+fib: fib.o
+	$(CLD) -o $@ $(LDFLAGS) fib.o $(LIBS)
 
 mpihello: mpihello.o
 	$(FLD) -o $@ $(LDFLAGS) mpihello.o $(LIBS)
