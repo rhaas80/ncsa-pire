@@ -42,6 +42,7 @@ int main(void) {
     struct node *maxfreq;
     #pragma omp parallel
     {
+      #pragma omp single
       maxfreq = findMostCommonNode(root);
     }
     double end = omp_get_wtime();
