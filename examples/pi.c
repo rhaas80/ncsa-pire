@@ -7,7 +7,7 @@ int main(int argc, char **argv)
 {
   int rank, sz;
   const int seed = 42;
-  int i, my_seed, seed_sz;
+  int my_seed;
 
   const int total_points = 36000000;
   int point, local_points;
@@ -25,7 +25,7 @@ int main(int argc, char **argv)
     my_seed = seed;
   MPI_Bcast(&my_seed, 1, MPI_INT, 0, MPI_COMM_WORLD);
 
-  srandom(my_seed + rank);
+  srand(my_seed + rank);
 
   //! how many points on each rank?
   local_points = total_points / sz;
@@ -35,8 +35,8 @@ int main(int argc, char **argv)
   // count how many points are inside of circle of radius 1
   local_inside = 0;
   for (point = 0 ; point < local_points ; point++) {
-    x = (double)random()/RAND_MAX;
-    y = (double)random()/RAND_MAX;
+    x = (double)rand()/RAND_MAX;
+    y = (double)rand()/RAND_MAX;
     r = pow(2.0*(x-0.5), 2) + pow(2.0*(y-0.5), 2);
     if(r < 1.0)
       local_inside += 1;
