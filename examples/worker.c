@@ -20,7 +20,8 @@ int main(int argc, char **argv)
       MPI_Send(&numbertosend, 1, MPI_FLOAT, i, dummy_tag, MPI_COMM_WORLD);
     } 
   } else {
-    MPI_Recv(&numbertoreceive, 1, MPI_FLOAT, 0, MPI_ANY_TAG, MPI_COMM_WORLD, &stat);
+    MPI_Recv(&numbertoreceive, 1, MPI_FLOAT, 0, MPI_ANY_TAG, MPI_COMM_WORLD,
+             &stat);
     result = numbertoreceive * rank;
   }
 
@@ -33,7 +34,8 @@ int main(int argc, char **argv)
   if (rank == 0) {
     result = 0;
     for(i=1 ; i<sz ; i++) {
-      MPI_Recv(&numbertoreceive, 1, MPI_FLOAT, i, MPI_ANY_TAG, MPI_COMM_WORLD,&stat);
+      MPI_Recv(&numbertoreceive, 1, MPI_FLOAT, MPI_ANY_SOURCE, MPI_ANY_TAG,
+               MPI_COMM_WORLD, &stat);
       result += numbertoreceive;
     }
     printf("Total is %f\n", result);

@@ -26,7 +26,7 @@ if (rank == 0):
   result = np.zeros(shape=(1), dtype=float)
   for i in range(1,sz):
     numbertoreceive = np.empty(shape=(1),dtype=float)
-    MPI.COMM_WORLD.Recv(numbertoreceive, i, MPI.ANY_TAG)
+    MPI.COMM_WORLD.Recv(numbertoreceive, MPI.ANY_SOURCE, MPI.ANY_TAG)
     result = result + numbertoreceive
   print ("Total is %f" % result[0])
 else:
