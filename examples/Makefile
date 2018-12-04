@@ -19,13 +19,16 @@ F90FLAGS=$(OMPFLAGS) $(OPTFLAGS) -Wall
 LDFLAGS=$(OMPFLAGS) -Wall
 LIBS=-lm
 
-TARGETS=sobel stream primes fib wordcount mpihello serialmpi pi worker gather
+TARGETS=omphello sobel stream primes fib wordcount mpihello serialmpi pi worker gather
 
 all: $(TARGETS)
 
 clean:
 	rm -f $(TARGETS)
 	rm -f *.o
+
+omphello: omphello.o
+	$(CLD) -o $@ $(LDFLAGS) omphello.o $(LIBS)
 
 sobel: sobel.o pgm.o
 	$(CLD) -o $@ $(LDFLAGS) sobel.o pgm.o $(LIBS)
