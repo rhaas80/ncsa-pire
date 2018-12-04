@@ -67,9 +67,9 @@ struct node *findMostCommonNode(struct node *p) {
   #pragma omp taskwait
 
   struct node *retval = p;
-  if(left_most_common && left_most_common->count > p->count)
+  if(left_most_common && left_most_common->count > retval->count)
     retval = left_most_common;
-  if(right_most_common && right_most_common->count > p->count)
+  if(right_most_common && right_most_common->count > retval->count)
     retval = right_most_common;
 
   return retval;
