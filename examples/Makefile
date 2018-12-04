@@ -49,13 +49,13 @@ serialmpi: serialmpi.o
 	$(CLD) -o $@ $(LDFLAGS) serialmpi.o $(LIBS)
 
 pi: pi.o
-	$(FLD) -o $@ $(LDFLAGS) pi.o $(LIBS)
+	$(CLD) -o $@ $(LDFLAGS) pi.o $(LIBS)
 
 worker: worker.o
-	$(FLD) -o $@ $(LDFLAGS) worker.o $(LIBS)
+	$(CLD) -o $@ $(LDFLAGS) worker.o $(LIBS)
 
 gather: gather.o
-	$(FLD) -o $@ $(LDFLAGS) gather.o $(LIBS)
+	$(CLD) -o $@ $(LDFLAGS) gather.o $(LIBS)
 
 # extra dependencies
 pgm.o sobel.o: pgm.h
